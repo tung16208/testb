@@ -9,7 +9,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230d2b4e'/%3E%3Ctext x='50%25' y='56%25' dominant-baseline='middle' text-anchor='middle' font-size='38' font-family='serif' fill='white'%3E%E4%BE%9D%3C/text%3E%3C/svg%3E"/>
-
+ 
 <!-- ══ Firebase SDK ══ -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
@@ -18,7 +18,7 @@ import {
   onSnapshot, serverTimestamp, query, where,
   deleteDoc, addDoc, getDocs, orderBy, limit, writeBatch
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
+ 
 const firebaseConfig = {
   apiKey: "AIzaSyBY1hisEWTccBZxEDP7cBl8_CnJrCaJ2hM",
   authDomain: "kanie-b23cb.firebaseapp.com",
@@ -34,7 +34,7 @@ window._fs = { doc, setDoc, getDoc, collection, onSnapshot, serverTimestamp, que
 window._fbReady = true;
 document.dispatchEvent(new Event('fb-ready'));
 </script>
-
+ 
 <style>
 /* ══════════════════════════════════════════════
    KAISHA-B PORTAL
@@ -66,7 +66,7 @@ document.dispatchEvent(new Event('fb-ready'));
   --ok-bg:   #ecfdf5;
   --err-bg:  #fef2f2;
 }
-
+ 
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 html,body{
   font-family:'Noto Sans JP','Sora',sans-serif;
@@ -77,7 +77,7 @@ html,body{
 }
 ::-webkit-scrollbar{width:5px;}
 ::-webkit-scrollbar-thumb{background:var(--bdr2);border-radius:99px;}
-
+ 
 /* ── ANIMATIONS ── */
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 @keyframes slideUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
@@ -87,7 +87,7 @@ html,body{
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes pinBounce{0%{transform:scale(0.3) rotate(-10deg);opacity:0}60%{transform:scale(1.15) rotate(3deg)}100%{transform:scale(1) rotate(0);opacity:1}}
-
+ 
 /* ── LOADING ── */
 #loadingScreen{
   position:fixed;inset:0;
@@ -102,7 +102,7 @@ html,body{
 .ls-sub{font-size:10px;letter-spacing:3px;opacity:.5;text-transform:uppercase;margin-bottom:16px;}
 .ls-bar{width:160px;height:3px;background:rgba(255,255,255,.15);border-radius:99px;margin:0 auto;overflow:hidden;}
 .ls-fill{height:100%;background:linear-gradient(90deg,var(--lime),var(--lime2));animation:lf 1.4s ease forwards;}
-
+ 
 /* ── TOP BAR ── */
 .topbar{
   position:sticky;top:0;z-index:200;
@@ -129,7 +129,7 @@ html,body{
 #syncDot{width:6px;height:6px;border-radius:50%;background:var(--lime);flex-shrink:0;}
 #syncDot.syncing{background:#fbbf24;animation:pulse .8s ease infinite;}
 #syncDot.error{background:#f87171;}
-
+ 
 /* ── MOBILE BOTTOM NAV ── */
 @media(max-width:640px){
   .mobile-nav{
@@ -149,12 +149,12 @@ html,body{
 .mbn-item.active::before{content:'';position:absolute;top:0;left:20%;right:20%;height:3px;background:var(--lime);border-radius:0 0 3px 3px;}
 .mbn-icon{font-size:22px;display:block;}
 .mbn-badge{position:absolute;top:5px;right:calc(50% - 20px);min-width:16px;height:16px;background:var(--orange);color:#fff;font-size:9px;font-weight:800;border-radius:99px;display:flex;align-items:center;justify-content:center;padding:0 4px;}
-
+ 
 /* ── MAIN LAYOUT ── */
 .page-shell{display:none;flex-direction:column;min-height:100vh;}
 .page-shell.visible{display:flex;}
 .content-wrap{flex:1;max-width:800px;width:100%;margin:0 auto;padding:24px 20px 80px;}
-
+ 
 /* ── AUTH SCREEN ── */
 #authScreen{
   display:none;
@@ -167,7 +167,7 @@ html,body{
 #authScreen::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
 .auth-deco1{position:absolute;top:-100px;right:-100px;width:350px;height:350px;border-radius:50%;background:radial-gradient(circle,rgba(74,222,128,.15),transparent 70%);pointer-events:none;}
 .auth-deco2{position:absolute;bottom:-80px;left:-80px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(232,93,47,.12),transparent 70%);pointer-events:none;}
-
+ 
 .auth-card{
   width:100%;max-width:440px;
   background:rgba(255,255,255,.97);
@@ -176,7 +176,7 @@ html,body{
   overflow:hidden;position:relative;z-index:1;
   animation:slideUp .45s cubic-bezier(.22,.68,0,1.2);
 }
-
+ 
 /* Auth header */
 .auth-header{
   background:linear-gradient(135deg,var(--green3),var(--green));
@@ -194,7 +194,7 @@ html,body{
   display:flex;align-items:center;gap:8px;
 }
 .auth-partner strong{color:#fff;}
-
+ 
 /* Step system */
 .auth-steps{display:flex;gap:0;padding:16px 24px 0;}
 .auth-step-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;position:relative;}
@@ -205,11 +205,11 @@ html,body{
 .auth-step-item.done .auth-step-circle{border-color:var(--green2);background:var(--green2);color:#fff;}
 .auth-step-label{font-size:9.5px;font-weight:600;color:var(--txl);}
 .auth-step-item.active .auth-step-label{color:var(--green);font-weight:700;}
-
+ 
 .auth-body{padding:18px 24px 20px;}
 .auth-panel{display:none;animation:fadeUp .25s ease;}
 .auth-panel.active{display:block;}
-
+ 
 /* Form elements */
 .fld{margin-bottom:14px;}
 .fld label{display:block;font-size:12px;font-weight:700;color:var(--green);margin-bottom:5px;}
@@ -230,7 +230,7 @@ html,body{
 .btn-primary:disabled{opacity:.6;cursor:not-allowed;transform:none;}
 .btn-secondary{width:100%;padding:11px;background:var(--sur2);color:var(--txb);border:1.5px solid var(--bdr);border-radius:var(--rads);font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;transition:.2s;}
 .btn-secondary:hover{border-color:var(--green2);}
-
+ 
 /* PIN input — big digits */
 .pin-input-wrap{display:flex;gap:8px;justify-content:center;margin:4px 0;}
 .pin-digit{
@@ -243,7 +243,7 @@ html,body{
   -webkit-text-security:disc;
 }
 .pin-digit:focus{border-color:var(--green);background:#fff;box-shadow:0 0 0 3px rgba(45,122,79,.12);}
-
+ 
 /* Device ID display */
 .device-id-box{
   background:rgba(26,74,46,.06);
@@ -255,10 +255,10 @@ html,body{
   margin-bottom:12px;
 }
 .device-id-label{font-size:10px;font-weight:700;color:var(--green);margin-bottom:4px;letter-spacing:.5px;}
-
+ 
 /* Auth footer */
 .auth-footer{border-top:1px solid var(--bdr);padding:12px 24px;font-size:10.5px;color:var(--txl);display:flex;justify-content:space-between;}
-
+ 
 /* ── BLOCKED SCREEN ── */
 .blocked-screen{
   position:fixed;inset:0;
@@ -276,13 +276,13 @@ html,body{
 .blocked-icon{font-size:60px;margin-bottom:16px;}
 .blocked-title{font-size:22px;font-weight:800;color:var(--green);font-family:'Sora',sans-serif;margin-bottom:8px;}
 .blocked-msg{font-size:13px;color:var(--txs);line-height:1.7;margin-bottom:18px;}
-
+ 
 /* ── PAGE HEADER ── */
 .page-header{margin-bottom:20px;}
 .page-header h2{font-size:22px;font-weight:800;color:var(--green);font-family:'Sora',sans-serif;}
 .page-header p{font-size:12px;color:var(--txs);margin-top:3px;}
 .ph-line{height:3px;width:36px;background:linear-gradient(90deg,var(--lime),var(--lime2));border-radius:2px;margin-top:8px;}
-
+ 
 /* ── CARD ── */
 .card{
   background:var(--sur);border-radius:18px;
@@ -290,7 +290,7 @@ html,body{
   padding:22px;margin-bottom:16px;
   animation:fadeUp .25s ease;
 }
-
+ 
 /* ── FORM ── */
 .company-badge{
   background:linear-gradient(135deg,rgba(26,74,46,.07),rgba(45,122,79,.05));
@@ -301,12 +301,12 @@ html,body{
 .co-icon{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--green),var(--green2));display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
 .co-lbl{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--green2);margin-bottom:2px;}
 .co-name{font-size:14px;font-weight:700;color:var(--green);}
-
+ 
 .form-section{margin-bottom:22px;}
 .form-label{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--green);margin-bottom:10px;}
 .tag-req{font-size:9px;background:var(--orange);color:#fff;padding:2px 8px;border-radius:99px;font-weight:700;}
 .tag-opt{font-size:9px;background:rgba(26,74,46,.1);color:var(--green2);padding:2px 8px;border-radius:99px;font-weight:600;}
-
+ 
 /* Radio pills */
 .rpills{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
 .rp input[type="radio"]{display:none;}
@@ -319,9 +319,18 @@ html,body{
 }
 .rp label .ri{font-size:22px;}
 .rp input:checked+label{border-color:var(--green);background:rgba(26,74,46,.07);color:var(--green);box-shadow:0 0 0 3px rgba(26,74,46,.1);}
-
-/* Device grid */
-.dgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+ 
+/* Device grid — モバイル対応 */
+.dgrid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  align-items:start;
+}
+.di{
+  display:flex;
+  flex-direction:column;
+}
 .di input[type="checkbox"]{display:none;}
 .di label{
   display:flex;align-items:center;gap:8px;
@@ -329,23 +338,30 @@ html,body{
   border-radius:var(--rad);cursor:pointer;
   font-size:13px;font-weight:600;color:var(--txs);
   background:var(--sur2);transition:.18s;user-select:none;
+  flex-shrink:0;
 }
-.di label .di-ico{font-size:18px;}
-.di label .chk{margin-left:auto;opacity:0;transition:.18s;}
-.di input:checked+label{border-color:var(--green);background:rgba(26,74,46,.07);color:var(--green);}
-.di input:checked+label .chk{opacity:1;color:var(--green);}
-.di input:checked+label{border-bottom-left-radius:0;border-bottom-right-radius:0;border-bottom-color:transparent;}
-.mnum{max-height:0;overflow:hidden;transition:max-height .25s;}
-.mnum.show{max-height:60px;}
+.di label .di-ico{font-size:18px;flex-shrink:0;}
+.di label .chk{margin-left:auto;opacity:0;transition:.18s;color:var(--green);}
+.di input:checked+label{
+  border-color:var(--green);
+  background:rgba(13,43,78,.07);
+  color:var(--green);
+  border-bottom-left-radius:0;
+  border-bottom-right-radius:0;
+  border-bottom-color:transparent;
+}
+.di input:checked+label .chk{opacity:1;}
+.mnum{max-height:0;overflow:hidden;transition:max-height .3s ease;}
+.mnum.show{max-height:80px;}
 .mnum-in{
-  display:flex;align-items:center;gap:8px;
-  padding:7px 11px;background:rgba(26,74,46,.04);
+  display:flex;align-items:center;gap:6px;
+  padding:7px 10px;background:rgba(13,43,78,.05);
   border:2px solid var(--green);border-top:none;
   border-radius:0 0 var(--rad) var(--rad);
 }
-.mnum-in label{font-size:11px;font-weight:700;color:var(--green);white-space:nowrap;flex-shrink:0;}
-.mnum-in input{flex:1;border:1.5px solid var(--bdr);border-radius:6px;padding:5px 8px;font-size:13px;font-family:inherit;outline:none;background:#fff;}
-
+.mnum-in label{font-size:10.5px;font-weight:700;color:var(--green);white-space:nowrap;flex-shrink:0;}
+.mnum-in input{flex:1;min-width:0;border:1.5px solid var(--bdr);border-radius:6px;padding:5px 7px;font-size:13px;font-family:inherit;outline:none;background:#fff;width:100%;}
+ 
 /* Textarea & text input */
 .tinput,.fta{
   width:100%;padding:12px 14px;
@@ -356,7 +372,7 @@ html,body{
 }
 .tinput:focus,.fta:focus{border-color:var(--green2);background:#fff;box-shadow:0 0 0 3px rgba(45,122,79,.08);}
 .fta{resize:vertical;min-height:72px;}
-
+ 
 /* Image upload */
 .img-upload-area{
   border:2px dashed var(--bdr2);border-radius:var(--rad);
@@ -373,7 +389,7 @@ html,body{
 .img-thumb img{width:100%;height:100%;object-fit:cover;}
 .img-thumb-del{position:absolute;top:3px;right:3px;width:20px;height:20px;border-radius:50%;background:rgba(200,32,32,.85);color:#fff;border:none;cursor:pointer;font-size:11px;display:flex;align-items:center;justify-content:center;}
 .img-count{font-size:11px;color:var(--txs);margin-top:5px;text-align:right;}
-
+ 
 /* Send button */
 .btn-send{
   width:100%;padding:15px;margin-top:6px;
@@ -386,7 +402,7 @@ html,body{
 }
 .btn-send:hover{transform:translateY(-1px);}
 .btn-send:disabled{opacity:.6;cursor:not-allowed;transform:none;}
-
+ 
 /* ── HISTORY ── */
 .hist-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px;}
 .hs{background:var(--sur);border:1px solid var(--bdr);border-radius:var(--rad);padding:13px 10px;text-align:center;}
@@ -395,7 +411,7 @@ html,body{
 .hist-filter{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
 .hf-btn{padding:6px 14px;border:1.5px solid var(--bdr);border-radius:99px;font-size:12px;font-weight:600;font-family:inherit;background:var(--sur);color:var(--txs);cursor:pointer;transition:.15s;}
 .hf-btn.active{background:var(--green);color:#fff;border-color:var(--green);}
-
+ 
 .hcard{background:var(--sur);border:1px solid var(--bdr);border-radius:var(--rad);overflow:hidden;border-top:3px solid var(--bdr);margin-bottom:10px;}
 .hcard.s-miteii{border-top-color:#f59e0b;}
 .hcard.s-jissyu{border-top-color:#3b82f6;}
@@ -411,7 +427,7 @@ html,body{
 .hcard-detail{max-height:0;overflow:hidden;transition:max-height .4s ease,opacity .3s;opacity:0;}
 .hcard.open .hcard-detail{max-height:2000px;opacity:1;}
 .hcard-inner{padding:0 14px 14px;border-top:1px solid var(--bdr);}
-
+ 
 /* Status timeline */
 .status-timeline{display:flex;align-items:center;padding:12px 0 10px;}
 .st-step{display:flex;flex-direction:column;align-items:center;gap:4px;}
@@ -423,24 +439,24 @@ html,body{
 .st-line{flex:1;height:3px;background:var(--bdr);margin:0 4px;position:relative;overflow:hidden;}
 .st-line.filled{background:rgba(45,122,79,.2);}
 .st-line-fill{position:absolute;inset:0;background:var(--green2);width:0;transition:width .8s ease;}
-
+ 
 .status-msg{padding:9px 12px;border-radius:var(--rads);font-size:12.5px;font-weight:600;margin:10px 0;background:var(--sur2);}
 .status-msg.s-miteii{background:#fef3c7;color:#92400e;}
 .status-msg.s-jissyu{background:#dbeafe;color:#1e40af;}
 .status-msg.s-kanryo{background:var(--ok-bg);color:#065f46;}
-
+ 
 .info-rows{margin:10px 0;}
 .info-row{display:flex;align-items:flex-start;gap:8px;padding:7px 0;border-bottom:1px solid var(--sur3);}
 .info-row:last-child{border-bottom:none;}
 .ir-l{font-size:11.5px;color:var(--txs);font-weight:600;min-width:80px;flex-shrink:0;}
 .ir-v{font-size:12.5px;color:var(--txb);font-weight:500;}
-
+ 
 .bdg{display:inline-flex;align-items:center;gap:3px;padding:3px 10px;border-radius:99px;font-size:11.5px;font-weight:700;margin-top:5px;}
 .bdg::before{content:'';width:4px;height:4px;border-radius:50%;background:currentColor;opacity:.7;}
 .b-m{background:#fef3c7;color:#92400e;}
 .b-j{background:#dbeafe;color:#1e40af;}
 .b-k{background:#d1fae5;color:#065f46;}
-
+ 
 /* Chat */
 .chat-section{margin-top:10px;border-top:1px solid var(--bdr);padding-top:10px;}
 .chat-header{display:flex;align-items:center;gap:6px;margin-bottom:8px;}
@@ -465,12 +481,12 @@ html,body{
 .btn-voice{padding:8px 10px;background:var(--sur2);color:var(--txb);border:1.5px solid var(--bdr);border-radius:var(--rads);font-size:16px;cursor:pointer;transition:.2s;flex-shrink:0;line-height:1;}
 .btn-voice:hover{background:var(--bdr);}
 .btn-voice.recording{background:#fee2e2;border-color:#f87171;color:#dc2626;animation:pulse .8s ease infinite;}
-
+ 
 .hcard-actions{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;}
 .btn-sm{padding:6px 12px;border:1.5px solid var(--bdr);border-radius:var(--rads);font-size:12px;font-weight:600;font-family:inherit;cursor:pointer;background:var(--sur2);color:var(--txb);transition:.15s;}
 .btn-sm:hover{border-color:var(--green2);}
 .btn-sm.danger{border-color:#fca5a5;color:var(--err);}
-
+ 
 /* Modal */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:500;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(3px);}
 .modal-box{background:var(--sur);border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.35);width:min(440px,96vw);overflow:hidden;animation:slideUp .3s cubic-bezier(.22,.68,0,1.1);max-height:90vh;overflow-y:auto;}
@@ -486,10 +502,10 @@ html,body{
 .btn-modal-ok{flex:1;padding:12px;background:linear-gradient(135deg,#059669,#10b981);color:#fff;border:none;border-radius:var(--rads);font-size:13.5px;font-weight:700;cursor:pointer;font-family:inherit;}
 .btn-modal-cancel{flex:1;padding:12px;background:var(--sur2);color:var(--txb);border:1.5px solid var(--bdr);border-radius:var(--rads);font-size:13.5px;font-weight:700;cursor:pointer;font-family:inherit;}
 .btn-modal-ok.danger{background:linear-gradient(135deg,var(--err),#ef4444);}
-
+ 
 /* Image lightbox */
 #imgModal{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9000;align-items:center;justify-content:center;flex-direction:column;gap:12px;}
-
+ 
 /* Toast */
 #toast{
   position:fixed;bottom:24px;left:50%;
@@ -505,27 +521,27 @@ html,body{
 #toast.error{background:var(--err);}
 #toast.warn{background:#b45309;}
 #toast.ok{background:var(--ok);}
-
+ 
 /* Empty state */
 .empty{text-align:center;padding:48px 20px;}
 .empty .ei{font-size:42px;margin-bottom:11px;opacity:.28;}
 .empty p{color:var(--txs);font-size:13px;}
-
+ 
 /* Success state */
 .submit-success{text-align:center;padding:36px 20px;}
 .ss-icon{font-size:56px;margin-bottom:14px;animation:bounceIn .5s cubic-bezier(.22,.68,0,1.2);}
 .ss-title{font-size:20px;font-weight:800;color:var(--green);font-family:'Sora',sans-serif;margin-bottom:8px;}
 .ss-sub{font-size:13px;color:var(--txs);line-height:1.7;margin-bottom:20px;}
 .btn-ghost{padding:10px 22px;border:2px solid var(--green);border-radius:var(--rads);font-size:13px;font-weight:700;color:var(--green);background:transparent;cursor:pointer;font-family:inherit;}
-
+ 
 @keyframes bounceIn{from{transform:scale(.3);opacity:0}60%{transform:scale(1.15)}to{transform:scale(1);opacity:1}}
-
+ 
 /* Responsive */
 @media(max-width:640px){
   .topbar{padding:0 12px;gap:8px;}
   .tb-badge{display:none;}
   .content-wrap{padding:14px 12px 80px;}
-  .dgrid{grid-template-columns:1fr 1fr !important;}
+  .dgrid{grid-template-columns:1fr 1fr;}
   .rpills{grid-template-columns:repeat(3,1fr);}
   .card{padding:14px 12px;}
   #toast{bottom:74px;}
@@ -535,7 +551,7 @@ html,body{
 </style>
 </head>
 <body>
-
+ 
 <!-- LOADING -->
 <div id="loadingScreen">
   <div class="ls-inner">
@@ -545,12 +561,12 @@ html,body{
     <div class="ls-bar"><div class="ls-fill"></div></div>
   </div>
 </div>
-
+ 
 <!-- AUTH SCREEN -->
 <div id="authScreen" style="display:flex;">
   <div class="auth-deco1"></div>
   <div class="auth-deco2"></div>
-
+ 
   <div class="auth-card">
     <!-- Header -->
     <div class="auth-header">
@@ -563,7 +579,7 @@ html,body{
       </div>
       <div class="auth-partner">⚡ <span>作業依頼システム powered by <strong>カニエ電機株式会社</strong></span></div>
     </div>
-
+ 
     <!-- Step indicators -->
     <div class="auth-steps">
       <div class="auth-step-item active" id="stepItem1">
@@ -579,7 +595,7 @@ html,body{
         <div class="auth-step-label">完了</div>
       </div>
     </div>
-
+ 
     <div class="auth-body">
       <!-- STEP 1: PIN -->
       <div class="auth-panel active" id="panelPin">
@@ -599,7 +615,7 @@ html,body{
         </div>
         <div style="margin-top:10px;font-size:11px;color:var(--txl);text-align:center;">PINコードをお持ちでない方はカニエ電機までお問い合わせください</div>
       </div>
-
+ 
       <!-- STEP 2: Device waiting -->
       <div class="auth-panel" id="panelDevice">
         <div style="text-align:center;margin-bottom:18px;">
@@ -613,7 +629,7 @@ html,body{
         <button class="btn-primary" id="deviceCheckBtn" onclick="recheckDevice()" style="display:none;"><span>🔄</span> 再確認する</button>
         <button class="btn-secondary" style="margin-top:8px;" onclick="goBackToPin()">← PINコード入力に戻る</button>
       </div>
-
+ 
       <!-- STEP 3: Success -->
       <div class="auth-panel" id="panelSuccess">
         <div style="text-align:center;">
@@ -624,17 +640,17 @@ html,body{
         </div>
       </div>
     </div>
-
+ 
     <div class="auth-footer">
       <span>© 2026 カニエ電機株式会社</span>
       <span>TEL 052-603-5275</span>
     </div>
   </div>
 </div>
-
+ 
 <!-- PAGE SHELL -->
 <div class="page-shell" id="pageShell">
-
+ 
   <!-- TOP BAR -->
   <div class="topbar">
     <div class="tb-logo">🌿</div>
@@ -654,7 +670,7 @@ html,body{
       <button class="btn-out" onclick="doLogout()">ログアウト</button>
     </div>
   </div>
-
+ 
   <!-- MOBILE BOTTOM NAV -->
   <div class="mobile-nav" id="mobileNav">
     <button class="mbn-item active" id="mbn1" onclick="showPage('pageForm','mbn1')">
@@ -666,16 +682,16 @@ html,body{
       <span>依頼履歴</span>
     </button>
   </div>
-
+ 
   <!-- CONTENT -->
   <div class="content-wrap">
-
+ 
     <!-- DESKTOP NAV TABS -->
     <div style="display:flex;gap:4px;margin-bottom:20px;background:var(--sur);border-radius:12px;padding:4px;border:1px solid var(--bdr);max-width:300px;" class="desktop-tabs">
       <button id="tab1" onclick="showPage('pageForm','mbn1')" style="flex:1;padding:8px;border:none;border-radius:9px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:inherit;background:var(--green);color:#fff;transition:.2s;">📋 依頼フォーム</button>
       <button id="tab2" onclick="showPage('pageHistory','mbn2');renderHistory()" style="flex:1;padding:8px;border:none;border-radius:9px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:inherit;background:transparent;color:var(--txs);transition:.2s;">📂 依頼履歴</button>
     </div>
-
+ 
     <!-- FORM PAGE -->
     <div id="pageForm">
       <div class="page-header">
@@ -691,7 +707,7 @@ html,body{
             <div class="co-name">株式会社B</div>
           </div>
         </div>
-
+ 
         <!-- 指示内容 -->
         <div class="form-section">
           <div class="form-label">📋 指示内容 <span class="tag-req">必須</span></div>
@@ -701,7 +717,7 @@ html,body{
             <div class="rp"><input type="radio" id="r3" name="shiji" value="点検"/><label for="r3"><span class="ri">🔍</span>点検</label></div>
           </div>
         </div>
-
+ 
         <!-- 機器 -->
         <div class="form-section">
           <div class="form-label">🏭 機器 <span class="tag-req">必須</span></div>
@@ -710,22 +726,22 @@ html,body{
             <div class="di"><input type="checkbox" id="d2" onchange="tn(this,'n2')"/><label for="d2"><span class="di-ico">🫧</span>洗濯機<span class="chk">✓</span></label><div class="mnum" id="n2"><div class="mnum-in"><label>番号</label><input type="text" id="no2" placeholder="例: B2-3"/></div></div></div>
             <div class="di"><input type="checkbox" id="d3" onchange="tn(this,'n3')"/><label for="d3"><span class="di-ico">🌀</span>乾燥機<span class="chk">✓</span></label><div class="mnum" id="n3"><div class="mnum-in"><label>番号</label><input type="text" id="no3" placeholder="例: C1-2"/></div></div></div>
             <div class="di"><input type="checkbox" id="d4" onchange="tn(this,'n4')"/><label for="d4"><span class="di-ico">🧊</span>冷蔵庫<span class="chk">✓</span></label><div class="mnum" id="n4"><div class="mnum-in"><label>番号</label><input type="text" id="no4" placeholder="例: D4-1"/></div></div></div>
-            <div class="di" style="grid-column:1/-1"><input type="checkbox" id="d5" onchange="tn(this,'n5')"/><label for="d5"><span class="di-ico">📦</span>その他<span class="chk">✓</span></label><div class="mnum" id="n5"><div class="mnum-in"><label>内容</label><input type="text" id="no5" placeholder="内容を入力してください"/></div></div></div>
+            <div class="di" data-full style="grid-column:1/-1"><input type="checkbox" id="d5" onchange="tn(this,'n5')"/><label for="d5"><span class="di-ico">📦</span>その他<span class="chk">✓</span></label><div class="mnum" id="n5"><div class="mnum-in"><label>内容</label><input type="text" id="no5" placeholder="内容を入力してください"/></div></div></div>
           </div>
         </div>
-
+ 
         <!-- 備考 -->
         <div class="form-section">
           <div class="form-label">📝 備考 <span class="tag-opt">任意</span></div>
           <textarea class="fta" id="fbiko" placeholder="補足事項・詳細があればご記入ください…"></textarea>
         </div>
-
+ 
         <!-- 担当者 -->
         <div class="form-section">
           <div class="form-label">👤 担当者名 <span class="tag-req">必須</span></div>
           <input class="tinput" type="text" id="ftanto" placeholder="例：山田 太郎"/>
         </div>
-
+ 
         <!-- 写真 -->
         <div class="form-section">
           <div class="form-label">📷 写真添付 <span class="tag-opt">任意</span></div>
@@ -738,11 +754,11 @@ html,body{
           <div class="img-preview-grid" id="imgPreviewGrid"></div>
           <div class="img-count" id="imgCount" style="display:none;"></div>
         </div>
-
+ 
         <button class="btn-send" id="sendBtn" onclick="sendForm()"><span>📨</span> 依頼を送信する</button>
       </div>
     </div>
-
+ 
     <!-- HISTORY PAGE -->
     <div id="pageHistory" style="display:none;">
       <div class="page-header">
@@ -766,12 +782,12 @@ html,body{
       </div>
       <div id="histContent"></div>
     </div>
-
+ 
   </div><!-- /content-wrap -->
 </div><!-- /page-shell -->
-
+ 
 <!-- BLOCKED SCREEN (dynamically inserted) -->
-
+ 
 <!-- MODALS -->
 <div class="modal-overlay" id="editModal" style="display:none;">
   <div class="modal-box">
@@ -788,7 +804,7 @@ html,body{
     </div>
   </div>
 </div>
-
+ 
 <div class="modal-overlay" id="deleteModal" style="display:none;">
   <div class="modal-box">
     <div class="modal-hd"><h3>🗑️ 依頼を削除</h3><button class="modal-close" onclick="document.getElementById('deleteModal').style.display='none'">✕</button></div>
@@ -802,15 +818,15 @@ html,body{
     </div>
   </div>
 </div>
-
+ 
 <!-- Image lightbox -->
 <div id="imgModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9000;align-items:center;justify-content:center;flex-direction:column;gap:12px;" onclick="document.getElementById('imgModal').style.display='none'">
   <button style="position:absolute;top:14px;right:16px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;font-size:20px;width:36px;height:36px;border-radius:50%;cursor:pointer;" onclick="document.getElementById('imgModal').style.display='none'">✕</button>
   <img id="imgModalImg" src="" style="max-width:92vw;max-height:80vh;border-radius:10px;object-fit:contain;" onclick="event.stopPropagation()"/>
 </div>
-
+ 
 <div id="toast"></div>
-
+ 
 <!-- ══════════════════════════════════════
   JAVASCRIPT
 ══════════════════════════════════════ -->
@@ -823,12 +839,12 @@ const TENANT_PIN  = '5678';
 const EJ_KEY = "_efCoOTySMW7-n5dK", EJ_SVC = "service_qo6afaf", EJ_TPL = "template_3wrvxdq";
 const NOTIFY = "damthanhtung1911@gmail.com";
 emailjs.init(EJ_KEY);
-
+ 
 /* ══ STATE ═══════════════════════════════════════════════ */
 let reqs = [], histFilter = 'all', _unsub = null;
 let editTargetId = null, deleteTargetId = null;
 let uploadedImages = [];
-
+ 
 /* ══ DEVICE ══════════════════════════════════════════════ */
 function getOrCreateDeviceId(){
   try{
@@ -852,13 +868,13 @@ function getDeviceLabel(){
 }
 const DEVICE_ID = getOrCreateDeviceId();
 const DEVICE_LABEL = getDeviceLabel();
-
+ 
 /* ══ FIREBASE WAIT ═══════════════════════════════════════ */
 function _waitFb(cb){
   if(window._fbReady){ cb(); }
   else { document.addEventListener('fb-ready', cb, {once:true}); }
 }
-
+ 
 /* ══ AUTH — STEP 1: PIN ══════════════════════════════════ */
 function pinNext(el, nextId){
   // Keep only first numeric character
@@ -879,16 +895,16 @@ function pinBack(el, evt){
     if(idx > 0) document.getElementById(ids[idx-1]).focus();
   }
 }
-
+ 
 async function doVerifyPin(){
   const pin = ['pin1','pin2','pin3','pin4'].map(id => document.getElementById(id).value).join('');
   const err = document.getElementById('pinErr');
   err.style.display = 'none';
   if(pin.length !== 4){ err.textContent = '⚠️ 4桁のPINを入力してください'; err.style.display = 'block'; return; }
-
+ 
   const btn = document.getElementById('pinBtn');
   btn.disabled = true; btn.innerHTML = '<span>⏳</span> 確認中…';
-
+ 
   // Fetch tenant PIN + device status IN PARALLEL for speed
   await new Promise(resolve => _waitFb(resolve));
   try {
@@ -896,7 +912,7 @@ async function doVerifyPin(){
       window._fs.getDoc(window._fs.doc(window._db, 'tenants', TENANT_ID)),
       window._fs.getDoc(window._fs.doc(window._db, 'devices', DEVICE_ID))
     ]);
-
+ 
     // Check PIN
     let pinOk = false;
     if(tenantSnap.exists()){
@@ -904,9 +920,9 @@ async function doVerifyPin(){
     } else {
       pinOk = (pin === TENANT_PIN);
     }
-
+ 
     btn.disabled = false; btn.innerHTML = '<span>🔐</span> 確認する';
-
+ 
     if(!pinOk){
       err.textContent = '⚠️ PINコードが正しくありません。カニエ電機にお問い合わせください。';
       err.style.display = 'block';
@@ -914,12 +930,12 @@ async function doVerifyPin(){
       document.getElementById('pin1').focus();
       return;
     }
-
+ 
     // PIN OK → go to step 2 immediately (no extra fetch needed)
     goToStep(2);
     document.getElementById('showDeviceId').textContent = DEVICE_ID;
     setSyncStatus('syncing');
-
+ 
     // Register or update device using already-fetched snapshot
     if(!deviceSnap.exists()){
       await window._fs.setDoc(window._fs.doc(window._db, 'devices', DEVICE_ID), {
@@ -940,7 +956,7 @@ async function doVerifyPin(){
       logLoginEvent('kaisha-b', TENANT_NAME, devData.status === 'allowed' ? 'success' : 'blocked');
     }
     setSyncStatus('ok');
-
+ 
   } catch(e){
     console.error(e);
     btn.disabled = false; btn.innerHTML = '<span>🔐</span> 確認する';
@@ -958,19 +974,19 @@ async function doVerifyPin(){
     }
   }
 }
-
+ 
 async function registerAndCheckDevice(){
   // Legacy function kept for compatibility — now handled inside doVerifyPin
   document.getElementById('showDeviceId').textContent = DEVICE_ID;
 }
-
+ 
 async function recheckDevice(){
   const btn = document.getElementById('deviceCheckBtn');
   if(btn) btn.style.display = 'none';
   document.getElementById('deviceStateIcon').textContent = '⏳';
   document.getElementById('deviceStateTitle').textContent = 'デバイス確認中…';
   document.getElementById('deviceStateMsg').textContent = '承認状況を確認しています。';
-
+ 
   try {
     const snap = await window._fs.getDoc(window._fs.doc(window._db, 'devices', DEVICE_ID));
     const status = snap.exists() ? (snap.data().status || 'pending') : 'pending';
@@ -981,7 +997,7 @@ async function recheckDevice(){
     if(btn) btn.style.display = 'flex';
   }
 }
-
+ 
 function handleDeviceStatus(status, fromRecheck){
   if(status === 'allowed'){
     // Step 3 success
@@ -995,7 +1011,7 @@ function handleDeviceStatus(status, fromRecheck){
     showDevicePending();
   }
 }
-
+ 
 let _deviceListener = null;
 function showDevicePending(){
   document.getElementById('deviceStateIcon').textContent = '⏳';
@@ -1003,7 +1019,7 @@ function showDevicePending(){
   document.getElementById('deviceStateMsg').innerHTML =
     'このデバイスはまだ承認されていません。<br>カニエ電機の担当者に<strong>デバイスID</strong>をお伝えください。<br>承認されると自動的に次へ進みます。';
   document.getElementById('deviceCheckBtn').style.display = 'flex';
-
+ 
   // Real-time listener: auto-advance when admin approves
   if(_deviceListener) _deviceListener();
   _deviceListener = window._fs.onSnapshot(
@@ -1030,19 +1046,19 @@ function showDevicePending(){
     (err) => { console.error('device listener error', err); }
   );
 }
-
+ 
 function goBackToPin(){
   goToStep(1);
   ['pin1','pin2','pin3','pin4'].forEach(id => { document.getElementById(id).value = ''; });
   document.getElementById('pin1').focus();
 }
-
+ 
 function goToStep(n){
   document.querySelectorAll('.auth-panel').forEach(p => p.classList.remove('active'));
   document.getElementById('panelPin').classList.toggle('active', n === 1);
   document.getElementById('panelDevice').classList.toggle('active', n === 2);
   document.getElementById('panelSuccess').classList.toggle('active', n === 3);
-
+ 
   // Update step indicators
   for(let i = 1; i <= 3; i++){
     const item = document.getElementById('stepItem'+i);
@@ -1054,14 +1070,14 @@ function goToStep(n){
     else circle.textContent = '✓';
   }
 }
-
+ 
 function enterSystem(){
   document.getElementById('authScreen').style.display = 'none';
   document.getElementById('pageShell').classList.add('visible');
   try { localStorage.setItem('kb_session', JSON.stringify({ts: Date.now()})); } catch(e){}
   initReqs();
 }
-
+ 
 /* ══ SESSION ═════════════════════════════════════════════ */
 async function checkSession(){
   try {
@@ -1095,7 +1111,7 @@ function doLogout(){
   ['pin1','pin2','pin3','pin4'].forEach(id => { document.getElementById(id).value = ''; });
   setTimeout(() => document.getElementById('pin1').focus(), 200);
 }
-
+ 
 /* ══ FIRESTORE SYNC ══════════════════════════════════════ */
 function initReqs(){
   setSyncStatus('syncing');
@@ -1110,7 +1126,7 @@ function initReqs(){
     }, e => { console.error(e); setSyncStatus('error'); });
   });
 }
-
+ 
 function saveReq(req){
   if(!req || !req.id) return;
   setSyncStatus('syncing');
@@ -1121,7 +1137,7 @@ function saveReq(req){
     } catch(e){ console.error(e); setSyncStatus('error'); showToast('⚠️ 同期エラーが発生しました', 'error'); }
   });
 }
-
+ 
 function deleteReq(reqId){
   _waitFb(async () => {
     try {
@@ -1129,7 +1145,7 @@ function deleteReq(reqId){
     } catch(e){ console.error(e); }
   });
 }
-
+ 
 /* ══ LOGIN LOG ═══════════════════════════════════════════ */
 function logLoginEvent(userId, userName, result){
   _waitFb(async () => {
@@ -1141,30 +1157,30 @@ function logLoginEvent(userId, userName, result){
     } catch(e){}
   });
 }
-
+ 
 /* ══ PAGE NAVIGATION ═════════════════════════════════════ */
 function showPage(pageId, mbnId){
   document.getElementById('pageForm').style.display = pageId === 'pageForm' ? 'block' : 'none';
   document.getElementById('pageHistory').style.display = pageId === 'pageHistory' ? 'block' : 'none';
-
+ 
   // Mobile nav
   document.querySelectorAll('.mbn-item').forEach(b => b.classList.remove('active'));
   const mbn = document.getElementById(mbnId);
   if(mbn) mbn.classList.add('active');
-
+ 
   // Desktop tabs
   document.getElementById('tab1').style.background = pageId === 'pageForm' ? 'var(--green)' : 'transparent';
   document.getElementById('tab1').style.color = pageId === 'pageForm' ? '#fff' : 'var(--txs)';
   document.getElementById('tab2').style.background = pageId === 'pageHistory' ? 'var(--green)' : 'transparent';
   document.getElementById('tab2').style.color = pageId === 'pageHistory' ? '#fff' : 'var(--txs)';
 }
-
+ 
 function buildNav(){
   const pend = reqs.filter(r => r.status === '未定').length;
   const badge = document.getElementById('histBadge');
   if(badge){ badge.style.display = pend > 0 ? 'flex' : 'none'; badge.textContent = pend; }
 }
-
+ 
 /* ══ FORM ════════════════════════════════════════════════ */
 function tn(el, id){ document.getElementById(id).classList.toggle('show', el.checked); }
 function handleDragOver(e){e.preventDefault();document.getElementById('uploadArea').classList.add('drag-over');}
@@ -1190,14 +1206,14 @@ function renderImgPreviews(){
   if(uploadedImages.length){cnt.textContent=`${uploadedImages.length}/5 枚`;cnt.style.display='block';}
   else cnt.style.display='none';
 }
-
+ 
 function getMachineInfo(){
   const devs=[{i:'d1',l:'エアコン',n:'no1'},{i:'d2',l:'洗濯機',n:'no2'},{i:'d3',l:'乾燥機',n:'no3'},{i:'d4',l:'冷蔵庫',n:'no4'},{i:'d5',l:'その他',n:'no5'}];
   return devs.filter(d=>document.getElementById(d.i)?.checked)
     .map(d=>{ const v=document.getElementById(d.n)?.value; return v?`${d.l}（${v}）`:d.l; })
     .join('、')||'（未選択）';
 }
-
+ 
 async function sendForm(){
   const shiji = document.querySelector('input[name="shiji"]:checked');
   const tanto = document.getElementById('ftanto').value.trim();
@@ -1205,7 +1221,7 @@ async function sendForm(){
   if(!shiji){showToast('指示内容を選択してください','error');return;}
   if(!devs.length){showToast('機器を1つ以上選択してください','error');return;}
   if(!tanto){showToast('担当者名を入力してください','error');return;}
-
+ 
   const kiki = getMachineInfo();
   const biko = document.getElementById('fbiko').value.trim();
   const rec = {
@@ -1215,12 +1231,12 @@ async function sendForm(){
     tenantId: TENANT_ID, deviceId: DEVICE_ID,
     images: uploadedImages.map(img=>({name:img.name,dataUrl:img.dataUrl}))
   };
-
+ 
   const btn = document.getElementById('sendBtn');
   btn.disabled = true; btn.innerHTML = '<span>⏳</span> 送信中…';
-
+ 
   saveReq(rec);
-
+ 
   try {
     await emailjs.send(EJ_SVC, EJ_TPL, {
       shisetsumei: TENANT_FULL, shiji: shiji.value, kiki,
@@ -1231,13 +1247,13 @@ async function sendForm(){
   } catch(e){
     showToast('⚠️ データは保存されました。メール送信に失敗しました。', 'warn');
   }
-
+ 
   uploadedImages = [];
   renderImgPreviews();
   btn.disabled = false; btn.innerHTML = '<span>📨</span> 依頼を送信する';
   resetForm();
 }
-
+ 
 function resetForm(){
   document.querySelectorAll('input[name="shiji"]').forEach(r=>r.checked=false);
   ['d1','d2','d3','d4','d5'].forEach(id=>{
@@ -1252,7 +1268,7 @@ function resetForm(){
   document.getElementById('fbiko').value = '';
   document.getElementById('ftanto').value = '';
 }
-
+ 
 /* ══ HISTORY ═════════════════════════════════════════════ */
 let histFilterVal = 'all';
 function setFilter(val, btn){
@@ -1261,18 +1277,18 @@ function setFilter(val, btn){
   btn.classList.add('active');
   renderHistory();
 }
-
+ 
 function renderHistory(){
   let data = [...reqs].reverse();
   if(histFilterVal !== 'all') data = data.filter(r => r.status === histFilterVal);
-
+ 
   document.getElementById('hTotal').textContent = reqs.length;
   document.getElementById('hPend').textContent = reqs.filter(r => r.status === '未定').length;
   document.getElementById('hDone').textContent = reqs.filter(r => r.status === '完了').length;
-
+ 
   const el = document.getElementById('histContent');
   if(!data.length){ el.innerHTML = '<div class="empty"><div class="ei">📂</div><p>依頼がありません</p></div>'; return; }
-
+ 
   el.innerHTML = data.map(r => {
     const sc = r.status === '未定' ? 'miteii' : r.status === '実施中' ? 'jissyu' : 'kanryo';
     const step = r.status === '未定' ? 0 : r.status === '実施中' ? 1 : 2;
@@ -1284,7 +1300,7 @@ function renderHistory(){
       if(i < 2) tl += `<div class="st-line ${done?'filled':''}" id="stl-${r.id}-${i}"><div class="st-line-fill"></div></div>`;
     });
     tl += '</div>';
-
+ 
     const msgs = (r.comments || []);
     let chatHtml = `<div class="chat-section">
       <div class="chat-header"><span class="chat-title">💬 メッセージ</span><span class="chat-count">${msgs.length}</span></div>
@@ -1304,16 +1320,16 @@ function renderHistory(){
         <button class="btn-chat-send" onclick="sendChat(${r.id})">送信</button>
       </div>
     </div>`;
-
+ 
     const canEdit = r.status === '未定';
     const actions = canEdit ? `<div class="hcard-actions">
       <button class="btn-sm" onclick="event.stopPropagation();openEditModal(${r.id})">✏️ 編集</button>
       <button class="btn-sm danger" onclick="event.stopPropagation();openDeleteModal(${r.id})">🗑️ 削除</button>
     </div>` : '';
-
+ 
     const statusMsgs = {'未定':'スタッフが内容を確認しております。しばらくお待ちください。','実施中':r.acceptedBy?`スタッフ「${r.acceptedBy}」が現在対応中です。`:'スタッフが対応中です。','完了':'作業が完了しました。ご依頼ありがとうございました。'};
     const bdg = `<span class="bdg b-${r.status==='未定'?'m':r.status==='実施中'?'j':'k'}">${r.status}</span>`;
-
+ 
     return `<div class="hcard s-${sc}" id="hcard-${r.id}">
       <div class="hcard-header" onclick="toggleCard(${r.id})">
         <div class="hc-top">
@@ -1341,7 +1357,7 @@ function renderHistory(){
       </div>
     </div>`;
   }).join('');
-
+ 
   setTimeout(() => {
     data.forEach(r => {
       const detail = document.getElementById(`hdetail-${r.id}`);
@@ -1351,7 +1367,7 @@ function renderHistory(){
     });
   }, 100);
 }
-
+ 
 const _openCards = new Set();
 function toggleCard(id){
   const card = document.getElementById(`hcard-${id}`);
@@ -1373,7 +1389,7 @@ function toggleCard(id){
     }, 60);
   }
 }
-
+ 
 /* ══ CHAT ════════════════════════════════════════════════ */
 function sendChat(id){
   const ta = document.getElementById(`chatIn-${id}`); if(!ta) return;
@@ -1385,7 +1401,7 @@ function sendChat(id){
   showToast('📨 スタッフへメッセージを送信しました', 'ok');
   emailjs.send(EJ_SVC, EJ_TPL, {shisetsumei: TENANT_FULL, shiji: `【メッセージ】${r.shiji}`, kiki: r.kiki, biko: text, tanto: TENANT_NAME, date: nowStr(), to_email: NOTIFY, from_email: "tung16208@gmail.com"}).catch(e=>console.error(e));
 }
-
+ 
 /* ══ VOICE INPUT ═════════════════════════════════════════ */
 let _voiceRecog = null, _voiceActiveId = null;
 function startVoice(id){
@@ -1418,7 +1434,7 @@ function startVoice(id){
   _voiceRecog = recog;
   recog.start();
 }
-
+ 
 /* ══ EDIT / DELETE ═══════════════════════════════════════ */
 let _editId = null, _deleteId = null;
 function openEditModal(id){
@@ -1458,7 +1474,7 @@ function confirmDelete(){
   _deleteId = null;
   showToast('依頼を削除しました', 'ok');
 }
-
+ 
 /* ══ IMAGE LIGHTBOX ══════════════════════════════════════ */
 function openImg(reqId, idx){
   const r = reqs.find(r => String(r.id) === String(reqId));
@@ -1466,7 +1482,7 @@ function openImg(reqId, idx){
   document.getElementById('imgModalImg').src = r.images[idx].dataUrl;
   document.getElementById('imgModal').style.display = 'flex';
 }
-
+ 
 /* ══ EXCEL EXPORT ════════════════════════════════════════ */
 function exportExcel(){
   if(!reqs.length){showToast('依頼データがありません','warn');return;}
@@ -1479,7 +1495,7 @@ function exportExcel(){
   XLSX.writeFile(wb,`依頼履歴_会社B_${now.getFullYear()}${p2(now.getMonth()+1)}${p2(now.getDate())}.xlsx`);
   showToast('Excelをダウンロードしました','ok');
 }
-
+ 
 /* ══ SYNC STATUS ═════════════════════════════════════════ */
 function setSyncStatus(s){
   const badge = document.getElementById('syncBadge');
@@ -1492,7 +1508,7 @@ function setSyncStatus(s){
   else if(s === 'error'){ dot.classList.add('error'); if(txt) txt.textContent = 'エラー'; }
   else { if(txt) txt.textContent = '同期済み'; }
 }
-
+ 
 /* ══ HELPERS ═════════════════════════════════════════════ */
 function p2(n){return String(n).padStart(2,'0');}
 function nowStr(){const d=new Date();return `${d.getFullYear()}/${p2(d.getMonth()+1)}/${p2(d.getDate())} ${p2(d.getHours())}:${p2(d.getMinutes())}`;}
@@ -1501,7 +1517,7 @@ function showToast(msg, type=''){
   const t=document.getElementById('toast'); t.textContent=msg; t.className='show'+(type?' '+type:'');
   clearTimeout(t._t); t._t=setTimeout(()=>t.className='',3500);
 }
-
+ 
 /* ══ INIT ════════════════════════════════════════════════ */
 window.addEventListener('load', () => {
   // Hide loading as soon as Firebase is ready (min 600ms for animation)
