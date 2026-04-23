@@ -404,13 +404,24 @@ html,body{
 .btn-send:disabled{opacity:.6;cursor:not-allowed;transform:none;}
  
 /* ── HISTORY ── */
-.hist-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px;}
-.hs{background:var(--sur);border:1px solid var(--bdr);border-radius:var(--rad);padding:13px 10px;text-align:center;}
-.hs-n{font-size:26px;font-weight:800;color:var(--green);font-family:'Sora',sans-serif;}
-.hs-l{font-size:10.5px;color:var(--txs);margin-top:2px;}
-.hist-filter{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
-.hf-btn{padding:6px 14px;border:1.5px solid var(--bdr);border-radius:99px;font-size:12px;font-weight:600;font-family:inherit;background:var(--sur);color:var(--txs);cursor:pointer;transition:.15s;}
-.hf-btn.active{background:var(--green);color:#fff;border-color:var(--green);}
+.hist-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px;}
+.hs{
+  background:var(--sur);border:1px solid var(--bdr);border-radius:var(--rad);
+  padding:13px 10px;text-align:center;
+  cursor:pointer;transition:all .18s;
+  user-select:none;-webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+}
+.hs:hover{border-color:var(--green2);box-shadow:var(--shds);transform:translateY(-1px);}
+.hs.active{background:var(--green);border-color:var(--green);box-shadow:0 4px 16px rgba(26,74,46,.25);}
+.hs.active .hs-n,.hs.active .hs-l{color:#fff;}
+.hs-n{font-size:24px;font-weight:800;color:var(--green);font-family:'Sora',sans-serif;transition:color .18s;}
+.hs-l{font-size:10px;color:var(--txs);margin-top:2px;font-weight:600;transition:color .18s;}
+@media(max-width:480px){
+  .hist-stats{grid-template-columns:repeat(2,1fr);}
+  .hs-n{font-size:20px;}
+}
+/* hist-filter buttons removed */
  
 .hcard{background:var(--sur);border:1px solid var(--bdr);border-radius:var(--rad);overflow:hidden;border-top:3px solid var(--bdr);margin-bottom:10px;}
 .hcard.s-miteii{border-top-color:#f59e0b;}
@@ -538,16 +549,95 @@ html,body{
  
 /* Responsive */
 @media(max-width:640px){
-  .topbar{padding:0 12px;gap:8px;}
-  .tb-badge{display:none;}
+  /* Topbar fix */
+  .topbar{padding:0 10px;gap:6px;min-width:0;}
+  .tb-badge{display:none!important;}
+  .tb-divider{display:none!important;}
+  .tb-client{display:none!important;}
+  .tb-names{min-width:0;overflow:hidden;}
+  .tb-names .tb-main{font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .user-pill{display:none!important;}
+  #syncBadge{display:none!important;}
+  .tb-spacer{min-width:0;}
+  .tb-right{gap:5px;flex-shrink:0;flex-wrap:nowrap;}
+  .btn-out{padding:4px 9px;font-size:11px;white-space:nowrap;}
+  /* Content */
   .content-wrap{padding:14px 12px 80px;}
   .dgrid{grid-template-columns:1fr 1fr;}
+  .di[data-full]{grid-column:1/-1;}
   .rpills{grid-template-columns:repeat(3,1fr);}
   .card{padding:14px 12px;}
   #toast{bottom:74px;}
   .auth-steps{padding:14px 18px 0;}
   .pin-digit{width:44px;height:52px;font-size:22px;}
+  /* Notif panel on mobile */
+  .notif-panel{top:60px;right:8px;left:8px;width:auto;}
 }
+ 
+/* 通知 button */
+.btn-notif{
+  position:relative;
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.18);
+  color:rgba(255,255,255,.85);
+  width:34px;height:34px;border-radius:8px;
+  font-size:16px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  -webkit-tap-highlight-color:rgba(255,255,255,.2);
+  touch-action:manipulation;
+  line-height:1;
+  padding:0;
+  user-select:none;
+}
+.btn-notif:hover,.btn-notif:active{background:rgba(255,255,255,.25);}
+.notif-badge{
+  position:absolute;top:-4px;right:-4px;
+  min-width:16px;height:16px;
+  background:var(--orange);color:#fff;
+  font-size:9px;font-weight:800;
+  border-radius:99px;
+  display:flex;align-items:center;justify-content:center;
+  padding:0 3px;
+  pointer-events:none;
+}
+/* 通知 dropdown */
+.notif-panel{
+  position:fixed;
+  top:60px;right:12px;
+  width:min(320px,calc(100vw - 24px));
+  background:var(--sur);
+  border:1px solid var(--bdr);
+  border-radius:var(--rad);
+  box-shadow:var(--shd);
+  z-index:9000;
+  overflow:hidden;
+  animation:fadeUp .2s ease;
+  display:none;
+}
+.notif-panel.open{display:block;}
+.notif-panel-hd{
+  background:linear-gradient(135deg,var(--green3),var(--green));
+  padding:10px 14px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.notif-panel-hd span{color:#fff;font-size:12.5px;font-weight:700;}
+.notif-clear{background:rgba(255,255,255,.15);border:none;color:rgba(255,255,255,.8);border-radius:6px;font-size:11px;padding:3px 8px;cursor:pointer;font-family:inherit;}
+.notif-list{max-height:280px;overflow-y:auto;}
+.notif-item{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:11px 14px;border-bottom:1px solid var(--sur3);
+  cursor:pointer;transition:.15s;
+}
+.notif-item:hover{background:var(--sur2);}
+.notif-item:last-child{border-bottom:none;}
+.notif-item.unread{background:rgba(26,74,46,.04);}
+.notif-icon{font-size:20px;flex-shrink:0;margin-top:1px;}
+.notif-body{flex:1;min-width:0;}
+.notif-title{font-size:12px;font-weight:700;color:var(--txb);}
+.notif-sub{font-size:11px;color:var(--txs);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.notif-time{font-size:10px;color:var(--txl);margin-top:2px;}
+.notif-empty{padding:24px;text-align:center;font-size:12.5px;color:var(--txl);}
 </style>
 </head>
 <body>
@@ -667,7 +757,21 @@ html,body{
     <div class="tb-spacer"></div>
     <div class="tb-right">
       <div class="user-pill"><span class="u-dot"></span><span id="upname">会社B</span></div>
+      <button class="btn-notif" id="notifBtn" onclick="toggleNotifPanel()" title="通知">
+        🔔<span class="notif-badge" id="notifBadge" style="display:none;"></span>
+      </button>
       <button class="btn-out" onclick="doLogout()">ログアウト</button>
+    </div>
+  </div>
+ 
+  <!-- 通知パネル -->
+  <div class="notif-panel" id="notifPanel">
+    <div class="notif-panel-hd">
+      <span>🔔 通知</span>
+      <button class="notif-clear" onclick="clearNotifs()">すべて既読</button>
+    </div>
+    <div class="notif-list" id="notifList">
+      <div class="notif-empty">通知はありません</div>
     </div>
   </div>
  
@@ -770,15 +874,10 @@ html,body{
         <button class="btn-send" style="width:auto;padding:8px 16px;font-size:12.5px;margin-top:0;" onclick="exportExcel()">📊 Excel出力</button>
       </div>
       <div class="hist-stats">
-        <div class="hs"><div class="hs-n" id="hTotal">0</div><div class="hs-l">総依頼</div></div>
-        <div class="hs"><div class="hs-n" id="hPend" style="color:#d97706;">0</div><div class="hs-l">未対応</div></div>
-        <div class="hs"><div class="hs-n" id="hDone" style="color:var(--ok);">0</div><div class="hs-l">完了</div></div>
-      </div>
-      <div class="hist-filter">
-        <button class="hf-btn active" onclick="setFilter('all',this)">すべて</button>
-        <button class="hf-btn" onclick="setFilter('未定',this)">⏳ 未定</button>
-        <button class="hf-btn" onclick="setFilter('実施中',this)">🔧 実施中</button>
-        <button class="hf-btn" onclick="setFilter('完了',this)">✅ 完了</button>
+        <div class="hs active" id="hsAll" onclick="setStatFilter('all',this)"><div class="hs-n" id="hTotal">0</div><div class="hs-l">総依頼数</div></div>
+        <div class="hs" id="hsMitei" onclick="setStatFilter('未定',this)"><div class="hs-n" id="hPend" style="color:#d97706;">0</div><div class="hs-l">未対応</div></div>
+        <div class="hs" id="hsJissyu" onclick="setStatFilter('実施中',this)"><div class="hs-n" id="hWip" style="color:#3b82f6;">0</div><div class="hs-l">実施中</div></div>
+        <div class="hs" id="hsDone" onclick="setStatFilter('完了',this)"><div class="hs-n" id="hDone" style="color:var(--ok);">0</div><div class="hs-l">完了</div></div>
       </div>
       <div id="histContent"></div>
     </div>
@@ -1074,23 +1173,30 @@ function goToStep(n){
 function enterSystem(){
   document.getElementById('authScreen').style.display = 'none';
   document.getElementById('pageShell').classList.add('visible');
-  try { localStorage.setItem('kb_session', JSON.stringify({ts: Date.now()})); } catch(e){}
+  try {
+    localStorage.setItem('kb_device_approved', 'true');
+    localStorage.setItem('kb_session', JSON.stringify({ts: Date.now()}));
+  } catch(e){}
   initReqs();
 }
  
 /* ══ SESSION ═════════════════════════════════════════════ */
 async function checkSession(){
   try {
-    const s = JSON.parse(localStorage.getItem('kb_session') || 'null');
-    // 8 hour session
-    if(s && (Date.now() - s.ts) < 8 * 60 * 60 * 1000){
-      // Quick re-verify device still allowed (Firebase already ready here)
+    const approved = localStorage.getItem('kb_device_approved');
+    if(approved === 'true'){
       try {
         const snap = await window._fs.getDoc(window._fs.doc(window._db, 'devices', DEVICE_ID));
         if(snap.exists() && snap.data().status === 'allowed'){
           enterSystem(); return;
+        } else if(snap.exists() && snap.data().status === 'blocked'){
+          localStorage.removeItem('kb_device_approved');
+        } else if(!snap.exists()){
+          localStorage.removeItem('kb_device_approved');
         }
-      } catch(e){ /* fall through to showAuth */ }
+      } catch(e){
+        enterSystem(); return;
+      }
     }
   } catch(e){}
   showAuth();
@@ -1104,6 +1210,7 @@ function doLogout(){
   if(_unsub){ _unsub(); _unsub = null; }
   if(_deviceListener){ _deviceListener(); _deviceListener = null; }
   reqs = [];
+  // Logout only clears session, NOT device approval
   try { localStorage.removeItem('kb_session'); } catch(e){}
   document.getElementById('pageShell').classList.remove('visible');
   document.getElementById('authScreen').style.display = 'flex';
@@ -1117,11 +1224,31 @@ function initReqs(){
   setSyncStatus('syncing');
   _waitFb(() => {
     const colRef = window._fs.collection(window._db, `tenants/${TENANT_ID}/reqs`);
+    let _firstReqLoad = true;
+    const _seenReqIds = new Set();
     _unsub = window._fs.onSnapshot(colRef, snap => {
+      const prevReqs = reqs;
       reqs = snap.docs.map(d => d.data());
       setSyncStatus('ok');
       buildNav();
-      // Refresh current view
+      if(_firstReqLoad){
+        reqs.forEach(r => _seenReqIds.add(String(r.id)));
+        _firstReqLoad = false;
+      } else {
+        reqs.forEach(r => {
+          const prev = prevReqs.find(p => String(p.id) === String(r.id));
+          if(prev && prev.status !== r.status){
+            const si = r.status === '完了' ? '✅' : r.status === '実施中' ? '🔧' : '⏳';
+            addNotif(si, '依頼ステータス更新', r.shiji + ' / ' + r.kiki + ' → ' + r.status);
+          } else if(prev){
+            const pc = (prev.comments||[]).length, nc = (r.comments||[]).length;
+            if(nc > pc){
+              const lat = r.comments[r.comments.length-1];
+              if(lat && !lat.fromClient) addNotif('💬','スタッフからメッセージ', lat.text.slice(0,60));
+            }
+          }
+        });
+      }
       if(document.getElementById('pageHistory').style.display !== 'none') renderHistory();
     }, e => { console.error(e); setSyncStatus('error'); });
   });
@@ -1271,12 +1398,13 @@ function resetForm(){
  
 /* ══ HISTORY ═════════════════════════════════════════════ */
 let histFilterVal = 'all';
-function setFilter(val, btn){
+function setStatFilter(val, cardEl){
   histFilterVal = val;
-  document.querySelectorAll('.hf-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
+  document.querySelectorAll('.hs').forEach(c => c.classList.remove('active'));
+  if(cardEl) cardEl.classList.add('active');
   renderHistory();
 }
+function setFilter(val, btn){ setStatFilter(val, null); }
  
 function renderHistory(){
   let data = [...reqs].reverse();
@@ -1284,6 +1412,8 @@ function renderHistory(){
  
   document.getElementById('hTotal').textContent = reqs.length;
   document.getElementById('hPend').textContent = reqs.filter(r => r.status === '未定').length;
+  const wipEl = document.getElementById('hWip');
+  if(wipEl) wipEl.textContent = reqs.filter(r => r.status === '実施中').length;
   document.getElementById('hDone').textContent = reqs.filter(r => r.status === '完了').length;
  
   const el = document.getElementById('histContent');
@@ -1534,6 +1664,59 @@ window.addEventListener('load', () => {
   });
   setTimeout(_doInit, 1200); // absolute fallback
 });
+/* ══ NOTIFICATION SYSTEM ════════════════════════════════ */
+let _notifs = [], _notifUnread = 0;
+function addNotif(icon, title, sub){
+  const now = new Date();
+  const t = now.getHours().toString().padStart(2,'0')+':'+now.getMinutes().toString().padStart(2,'0');
+  _notifs.unshift({icon,title,sub,time:t,unread:true});
+  if(_notifs.length > 30) _notifs = _notifs.slice(0,30);
+  _notifUnread++;
+  updateNotifBadge();
+  renderNotifList();
+}
+function updateNotifBadge(){
+  const b = document.getElementById('notifBadge');
+  if(!b) return;
+  if(_notifUnread > 0){ b.style.display='flex'; b.textContent=_notifUnread>9?'9+':_notifUnread; }
+  else b.style.display='none';
+}
+function toggleNotifPanel(){
+  const p = document.getElementById('notifPanel');
+  if(!p) return;
+  if(p.classList.contains('open')){
+    p.classList.remove('open');
+  } else {
+    p.classList.add('open');
+    _notifUnread = 0;
+    _notifs.forEach(n => n.unread = false);
+    updateNotifBadge();
+    renderNotifList();
+  }
+}
+function clearNotifs(){
+  _notifs=[]; _notifUnread=0;
+  updateNotifBadge(); renderNotifList();
+}
+function renderNotifList(){
+  const el = document.getElementById('notifList');
+  if(!el) return;
+  if(!_notifs.length){ el.innerHTML='<div class="notif-empty">通知はありません</div>'; return; }
+  el.innerHTML = _notifs.map(n => `<div class="notif-item ${n.unread?'unread':''}">
+    <div class="notif-icon">${n.icon}</div>
+    <div class="notif-body">
+      <div class="notif-title">${escHtml(n.title)}</div>
+      <div class="notif-sub">${escHtml(n.sub)}</div>
+      <div class="notif-time">${n.time}</div>
+    </div></div>`).join('');
+}
+document.addEventListener('click', function(e){
+  const p = document.getElementById('notifPanel');
+  const b = document.getElementById('notifBtn');
+  if(p && b && !p.contains(e.target) && !b.contains(e.target)) p.classList.remove('open');
+});
+ 
 </script>
 </body>
 </html>
+ 
